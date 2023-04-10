@@ -35,10 +35,34 @@ const blurHeader = () => {
 window.addEventListener('scroll', blurHeader);
 
 /*=============== SHOW SCROLL UP ===============*/
+const scrollUp = () => {
+    const scrollUp = document.getElementById('scroll-up');
+    this.scrollY >= 350 ? scrollUp.classList.add('show-scroll') : scrollUp.classList.remove('show-scroll');
+};
 
+window.addEventListener('scroll', scrollUp);
 
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
+const sections = document.querySelectorAll('section[id]');
 
+const scrollActive = () => {
+    const scrollY = window.pageYOffset;
+
+    sections.forEach(current => {
+        const sectionHeight = current.offsetHeight;
+        const sectionTop = current.offsetTop - 50;
+        const sectionId = current.getAttribute('id');
+        const sectionsCLass = document.querySelector('.nav__menu a[href*=' + sectionId + ']');
+
+        if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+            sectionsCLass.classList.add('active-link');
+        }else{
+            sectionsCLass.classList.remove('active-link');
+        }
+    })
+};
+
+window.addEventListener('scroll', scrollActive);
 
 /*=============== DARK LIGHT THEME ===============*/
 
